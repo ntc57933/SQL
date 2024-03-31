@@ -1,5 +1,14 @@
 #In this project, I am using SQL to query multiple tables and find summary statistics about the customer & order data within.
 
+#Find out how many of each kind of product were sold in February in Los Angeles.
+
+SELECT product,
+location,
+sum(quantity) AS 'Amount Sold'
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY product;
+
 #Find out how many customers ordered more than 2 products at a time in February, and what the average amount spent was for those customers.
 
 SELECT COUNT(DISTINCT cust.acctnum), avg(price*quantity)
