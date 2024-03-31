@@ -1,3 +1,7 @@
+#In this project, I am using SQL to query multiple tables and find summary statistics about the customer & order data within.
+
+#Find out how many customers ordered more than 2 products at a time in February, and what the average amount spent was for those customers.
+
 SELECT COUNT(DISTINCT cust.acctnum), avg(price*quantity)
 FROM BIT_DB.FebSales Feb
 INNER JOIN BIT_DB.customers Cust
@@ -5,6 +9,11 @@ ON Cust.order_ID=Feb.orderID
 WHERE feb.quantity >2
 AND length(orderid) = 6
 AND orderid <> 'Order ID';
+
+#Find out :
+1) Which products were sold in February at 548 Lincoln St, Seattle WA 98101.
+2) How many of each product were sold.
+3) What the total revenue was.
 
 SELECT product,
 location,
@@ -15,11 +24,15 @@ AND orderid <> 'Order ID'
 AND location= "548 Lincoln St, Seattle, WA 98101"
 GROUP BY product;
 
+#Find out the total revenue for each product sold in January
+
 SELECT SUM(quantity)*price AS "Total Revenue",
 product
 FROM BIT_DB.JanSales
 WHERE price NOT IN("", "Price Each", 0)
 GROUP BY product;
+
+#Find out which product was the cheapest one sold in January, and what price it was sold for.
 
 SELECT
 min(price),
@@ -28,6 +41,8 @@ FROM BIT_DB.JanSales
 GROUP BY price
 ORDER BY price asc
 LIMIT 1;
+
+#Show the customer account numbers for all orders that were placed in February. 
 
 SELECT distinct acctnum
 FROM BIT_DB.FebSales
@@ -39,11 +54,15 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 GROUP BY acctnum;
 
+#Show how many orders were for an iPhone.
+
 SELECT COUNT (DISTINCT orderid) 
 FROM BIT_DB.JanSales
 WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 AND product='iPhone';
+
+#Show how many orders were placed in January.
 
 SELECT COUNT(DISTINCT orderid)
 FROM BIT_DB.JanSales
