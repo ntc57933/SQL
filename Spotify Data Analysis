@@ -24,56 +24,62 @@ time_signature integer NOT NULL
 
 /*Show the top 5 artists with highest average danceability*/
 
-SELECT danceability, track_name, artist_name
+SELECT danceability, 
+track_name, 
+artist_name
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(danceability) desc
+ORDER BY AVG(danceability) desc
 LIMIT 5;
 
 /*Show the average danceability for all artists*/
 
-SELECT artist_name, avg(danceability) AS 'Popularity'
+SELECT artist_name, 
+AVG(danceability) AS 'Popularity'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(danceability) desc;
+ORDER BY AVG(danceability) desc;
 
 /*Show the average popularity for all artists */
 
-SELECT artist_name, ROUND(avg(popularity),1) AS 'Popularity'
+SELECT artist_name, 
+ROUND(AVG(popularity),1) AS 'Popularity'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(popularity) desc;
+ORDER BY AVG(popularity) desc;
 
 /*Show the average energy for each artist's songs*/
 
 SELECT artist_name,
-avg(energy) AS 'Avg Energy'
+AVG(energy) AS 'Avg Energy'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(energy) desc;
+ORDER BY AVG(energy) desc;
 
 /*Show the average loudness for each artist's songs*/
 
-SELECT artist_name, ROUND(avg(loudness),1) AS 'Avg Loudness'
+SELECT artist_name, 
+ROUND(AVG(loudness),1) AS 'Avg Loudness'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(loudness) desc;
+ORDER BY AVG(loudness) desc;
 
 /*Show the average tempo for each artist's songs*/
 
-SELECT artist_name, ROUND(avg(tempo),1) AS 'Avg Tempo'
+SELECT artist_name, 
+ROUND(AVG(tempo),1) AS 'Avg Tempo'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY avg(tempo) desc;
+ORDER BY AVG(tempo) desc;
 
 /*Show the average popularity, danceability, energy, and loudness for the most popular artists*/
 
 SELECT artist_name,
-ROUND(avg(popularity),1) AS 'Avg Popularity',
-ROUND(avg(danceability),1) AS 'Avg Danceability',
-ROUND(avg(energy),1) AS " Avg Energy",
-ROUND(avg(loudness),1) AS "Loudness",
-ROUND(avg(tempo),1) AS "Tempo"
+ROUND(AVG(popularity),1) AS 'Avg Popularity',
+ROUND(AVG(danceability),1) AS 'Avg Danceability',
+ROUND(AVG(energy),1) AS " Avg Energy",
+ROUND(AVG(loudness),1) AS "Loudness",
+ROUND(AVG(tempo),1) AS "Tempo"
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
 ORDER BY popularity desc
@@ -82,11 +88,11 @@ LIMIT 10;
 /*Show the average popularity, danceability, energy, and loudness for the least popular artists*/
 
 SELECT artist_name,
-ROUND(avg(popularity),1) AS 'Avg Popularity',
-ROUND(avg(danceability),1) AS 'Avg Danceability',
-ROUND(avg(energy),1) AS " Avg Energy",
-ROUND(avg(loudness),1) AS "Loudness",
-ROUND(avg(tempo),1) AS "Tempo"
+ROUND(AVG(popularity),1) AS 'Avg Popularity',
+ROUND(AVG(danceability),1) AS 'Avg Danceability',
+ROUND(AVG(energy),1) AS " Avg Energy",
+ROUND(AVG(loudness),1) AS "Loudness",
+ROUND(AVG(tempo),1) AS "Tempo"
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
 ORDER BY popularity asc
@@ -95,8 +101,8 @@ LIMIT 10;
 /*Show artists with above-average popularity AND danceability*/
 
 SELECT artist_name,
-ROUND(avg(popularity),1) AS 'Avg Popularity',
-ROUND(avg(danceability),1) AS 'Avg Danceability'
+ROUND(AVG(popularity),1) AS 'Avg Popularity',
+ROUND(AVG(danceability),1) AS 'Avg Danceability'
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
 HAVING popularity >.75
