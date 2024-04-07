@@ -1,5 +1,5 @@
 /* In this project, I used Spotify data sourced from Kaggle.
-Then, I analyzed the data using SQL.
+Then, I created a table and imported the Spotify data in a .CSV document and analyzed the data with SQL.*/
 
 CREATE TABLE BIT_DB.Spotifydata (
 id integer PRIMARY KEY,
